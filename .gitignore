@@ -1,0 +1,15 @@
+.DS_Store
+*/.DS_Store
+.idea
+*.iml
+*.log
+target
+out
+gen### Gradle template
+.gradle
+gradle
+gradlew
+gradlew.bat
+build
+.env
+
