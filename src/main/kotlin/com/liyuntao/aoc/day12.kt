@@ -25,13 +25,11 @@ class Day12 {
     }
 
     private fun removeAllRelated(repo: MutableMap<Int, List<Int>>, start: Int, hasAccessedMarker: BitSet) {
-        if (hasAccessedMarker[start]) {
-            return
-        } else {
-            hasAccessedMarker[start] = true
-            repo[start]!!.map { removeAllRelated(repo, it, hasAccessedMarker) }
-            repo.remove(start)
-        }
+        if (hasAccessedMarker[start]) return
+
+        hasAccessedMarker[start] = true
+        repo[start]!!.map { removeAllRelated(repo, it, hasAccessedMarker) }
+        repo.remove(start)
     }
 
     private fun clearOneGroup(repo: MutableMap<Int, List<Int>>, hasAccessedMarker: BitSet): Boolean {
