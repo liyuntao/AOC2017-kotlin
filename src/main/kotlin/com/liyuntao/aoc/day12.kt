@@ -24,7 +24,7 @@ class Day12 {
         }
     }
 
-    fun removeAllRelated(repo: MutableMap<Int, List<Int>>, start: Int, hasAccessedMarker: BitSet) {
+    private fun removeAllRelated(repo: MutableMap<Int, List<Int>>, start: Int, hasAccessedMarker: BitSet) {
         if (hasAccessedMarker[start]) {
             return
         } else {
@@ -34,16 +34,16 @@ class Day12 {
         }
     }
 
-    private fun clearOneGroup(repo: MutableMap<Int, List<Int>>): Boolean {
+    private fun clearOneGroup(repo: MutableMap<Int, List<Int>>, hasAccessedMarker: BitSet): Boolean {
         if (repo.isEmpty()) return false
         val nextKey = repo.iterator().next().key
-        removeAllRelated(repo, nextKey, BitSet(5000))
+        removeAllRelated(repo, nextKey, hasAccessedMarker)
         return true
     }
 
-    fun findTotalGroups(repo: MutableMap<Int, List<Int>>): Int {
+    fun findTotalGroups(repo: MutableMap<Int, List<Int>>, hasAccessedMarker: BitSet): Int {
         var result = 0
-        while (clearOneGroup(repo)) {
+        while (clearOneGroup(repo, hasAccessedMarker)) {
             result += 1
         }
         return result
@@ -59,6 +59,6 @@ fun main(args: Array<String>) {
     day12.findCountContailsZero(day12.sillyParse(input), 0, BitSet(5000))
             .let { println("q1 result $it") }
     // q2
-    day12.findTotalGroups(day12.sillyParse(input))
+    day12.findTotalGroups(day12.sillyParse(input), BitSet(5000))
             .let { println("q2 result $it") }
 }
