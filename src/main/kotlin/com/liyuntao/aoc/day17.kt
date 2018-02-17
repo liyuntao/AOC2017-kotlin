@@ -25,19 +25,13 @@ object Day17 {
     }
 
     /***************** q2 related below ***********/
+    data class Package(val size: Int = 1, val curPos: Int = 0, val result: Int = -1)
+
     fun q2(step: Int, times: Int): Int {
-        var curPos = 0
-        var size = 1
-        var result = -1
-        for (i in (0 until times)) {
-            val nextCursor = doSpin(size, curPos, step)
-            if (nextCursor == 0) {
-                result = i + 1
-            }
-            curPos = nextCursor + 1
-            size++
-        }
-        return result
+        return (0 until times).fold(Package(), { t, i ->
+            val nextCursor = doSpin(t.size, t.curPos, step)
+            Package(t.size + 1, nextCursor + 1, if (nextCursor == 0) i + 1 else t.result)
+        }).result
     }
 
 }
@@ -48,5 +42,4 @@ fun main(args: Array<String>) {
 
     Day17.q2(386, 50000000)
             .let { println("q2 result $it") }
-
 }
