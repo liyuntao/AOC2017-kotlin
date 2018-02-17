@@ -88,6 +88,7 @@ fun main(args: Array<String>) {
     val midResult = Day16.execMoves("abcdefghijklmnop", moves.filter { it !is Day16.Moves.Partner })
     val mapping = Day16.genMapping(midResult)
 
+    // TIPS: 这里可以继续用二分法优化，map1w = a.map5000.map5000
     val q2CharArr = (0 until 1000000000).fold("abcdefghijklmnop".toCharArray(), { charArr, _ ->
         Day16.execMapping(charArr, mapping)
     })
