@@ -88,8 +88,6 @@ fun main(args: Array<String>) {
     val midResult = Day16.execMoves("abcdefghijklmnop", moves.filter { it !is Day16.Moves.Partner })
     val mapping = Day16.genMapping(midResult)
 
-    println(Day16.execMapping("abcdefghijklmnop".toCharArray(), mapping)).toString()
-
     val q2CharArr = (0 until 1000000000).fold("abcdefghijklmnop".toCharArray(), { charArr, _ ->
         Day16.execMapping(charArr, mapping)
     })
