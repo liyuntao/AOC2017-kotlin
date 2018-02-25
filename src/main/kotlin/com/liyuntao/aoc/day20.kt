@@ -64,11 +64,7 @@ object Day20 {
     }
 
     private fun isAnyTwoNearer(beforeTick: List<Long>, afterTick: List<Long>): Boolean {
-        for ((i, beforeD) in beforeTick.withIndex()) {
-            if (beforeD >= afterTick[i])
-                return true
-        }
-        return false
+        return beforeTick.zip(afterTick).filter { it.first > it.second }.firstOrNull() != null
     }
 
     fun q2() {
